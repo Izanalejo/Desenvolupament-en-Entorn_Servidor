@@ -30,13 +30,14 @@ $empleados = [
     ["nombre" => "Marta", "posición" => "Jefa de Producto", "departamento" => "Ventas"]
 ];
 
-
-foreach ($empleados as $trabajadores) {
-
-    echo "<p><b>IT: </b></p>";
-    echo "<ul>";
-    echo "<li>" . $trabajadores["nombre"];
-    
+function agruparPorDepartamento($empleados){
+    $agrupadosPorDepartamento = [];
 }
+
+foreach ($empleados as $empleado) {
+    $departamento = $empleado['departamento'];
+    $agrupadosPorDepartamento[$departamento][] = $empleado;
+}
+
 
 ?>
