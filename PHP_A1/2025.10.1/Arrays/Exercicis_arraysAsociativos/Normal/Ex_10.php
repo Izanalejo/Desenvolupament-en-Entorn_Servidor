@@ -31,6 +31,16 @@ $calificaciones = [
 ];
 
 
-print_r(array_merge_recursive($estudiantes,$calificaciones));
+$infoEstudiantes = [];
 
-?>
+foreach ($estudiantes as $id => $nombre) {
+    $infoEstudiantes[$id] = [
+        "nombre" => $nombre,
+        "calificacion" => $calificaciones[$id]
+    ];
+}
+
+// Mostrar el resultado
+foreach ($infoEstudiantes as $id => $datos) {
+    echo "ID: $id | Nombre: " . $datos["nombre"] . " | Calificación: " . $datos["calificacion"] . "<br>";
+}
