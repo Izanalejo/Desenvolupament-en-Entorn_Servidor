@@ -23,6 +23,7 @@ Ventas:
 Manipular arrays multidimensionales y agrupar datos utilizando estructuras asociativas.
 */
 
+
 $empleados = [
     ["nombre" => "Carlos", "posición" => "Desarrollador", "departamento" => "IT"],
     ["nombre" => "Ana", "posición" => "Diseñadora", "departamento" => "Marketing"],
@@ -30,14 +31,36 @@ $empleados = [
     ["nombre" => "Marta", "posición" => "Jefa de Producto", "departamento" => "Ventas"]
 ];
 
-function agruparPorDepartamento($empleados){
+function agruparPorDepartamento($empleados): array {
     $agrupadosPorDepartamento = [];
+
+    foreach ($empleados as $empleado) {
+        $departamento = $empleado['departamento'];
+        $agrupadosPorDepartamento[$departamento][] = $empleado;
+    }
+
+    return $agrupadosPorDepartamento;
 }
 
-foreach ($empleados as $empleado) {
-    $departamento = $empleado['departamento'];
-    $agrupadosPorDepartamento[$departamento][] = $empleado;
+function imprimirEmpleadosPorDepartamento($agrupados){
+    echo "<h2> EMPLEADOS AGRUPADOS POR DEPARTAMENTO </h2>";
+
+    foreach ($agrupados as $departamento => $empleados){
+        echo "<h3>Departamento: $departamento </h3>";
+        echo "<ul>";
+        foreach ($empleados as $empleado){
+            echo "<li>";
+            echo "Nombre: " . $empleado['nombre'] . " | ";
+            echo "Posición: " . $empleado['posición'];
+            echo "</li>";
+        }
+        echo "</ul>";
+    }
+
 }
+
+$agrupados = agruparPorDepartamento($empleados);
+imprimirEmpleadosPorDepartamento($agrupados);
 
 
 ?>
