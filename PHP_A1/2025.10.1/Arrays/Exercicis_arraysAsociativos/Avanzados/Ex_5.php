@@ -22,7 +22,6 @@ El resultado debe ser algo así:
 Combinar funciones de filtrado (array_filter) y mapeo (array_map) para procesar arrays complejos.
 */
 
-
 $estudiantes = [
     ["nombre" => "Laura", "calificaciones" => [8, 7, 9]],
     ["nombre" => "Carlos", "calificaciones" => [5, 6, 5]],
@@ -30,6 +29,41 @@ $estudiantes = [
     ["nombre" => "Luis", "calificaciones" => [4, 3, 5]]
 ];
 
+
+function calcularPromedio($calificaciones) {
+    return array_sum($calificaciones) / count($calificaciones);
+}
+
+function agregarPromedio($estudiante) {
+    $promedio = calcularPromedio($estudiante['calificaciones']);
+    $estudiante['promedio'] = $promedio;
+    return $estudiante;
+}
+
+function filtrarPorPromedio($estudiante) {
+    return $estudiante['promedio'] >= 6;
+}
+
+function crearArrayFinal($estudiante) {
+    return [
+        'nombre' => $estudiante['nombre'],
+        'promedio' => $estudiante['promedio']
+    ];
+}
+
+
+// 1. Agregar promedios
+$estudiantesConPromedio = array_map('agregarPromedio', $estudiantes);
+
+// 2. Filtrar por promedio >= 6
+$estudiantesFiltrados = array_filter($estudiantesConPromedio, 'filtrarPorPromedio');
+
+// 3. Crear array final con solo nombre y promedio
+$resultado = array_map('crearArrayFinal', $estudiantesFiltrados);
+
+echo "<pre>";
+print_r($resultado);
+echo "</pre>";
 
 
 
