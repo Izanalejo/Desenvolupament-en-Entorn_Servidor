@@ -38,38 +38,38 @@ $clientesB = [
     "Pedro" => 1
 ];
 
-/*
-Paso 1: Creamos una función que reciba ambos arrays y los fusione.
-*/
-function fusionarClientes($arrayA, $arrayB) {
-    // Array donde guardaremos el resultado final
-    $resultado = [];
+//Funcion que fusiona los dos arrays y suma si hay coincidencias
+function agruparClientes($arrayA, $arrayB){
 
-    // Paso 2: Recorremos el primer array y copiamos sus valores
     foreach ($arrayA as $nombre => $pedidos) {
         $resultado[$nombre] = $pedidos;
+        
     }
-
-    // Paso 3: Recorremos el segundo array
     foreach ($arrayB as $nombre => $pedidos) {
-        // Si el cliente ya existe, sumamos los pedidos
-        if (array_key_exists($nombre, $resultado)) {
+        if(array_key_exists($nombre, $resultado)){
             $resultado[$nombre] += $pedidos;
-        } else {
-            // Si no existe, lo añadimos directamente
+        }else{
             $resultado[$nombre] = $pedidos;
         }
     }
-
-    // Paso 4: Devolvemos el array final
     return $resultado;
 }
 
-// Paso 5: Llamamos a la función y mostramos el resultado
-$clientesFusionados = fusionarClientes($clientesA, $clientesB);
+//Funcion que imprime el array resultante
 
-echo "<pre>";
-print_r ($clientesFusionados);
-echo "</pre>";
+function imprimirClientes($arrayClientes){
+    echo "<h1>Fusión de arrays Clientes A y B</h1>";
+
+    foreach ($arrayClientes as $nombre => $pedidos) {
+        echo "$nombre:" . "$pedidos<br>";
+    }
+}
+
+//main
+
+$final = agruparClientes($clientesA, $clientesB);
+
+imprimirClientes($final); 
+
 ?>
 

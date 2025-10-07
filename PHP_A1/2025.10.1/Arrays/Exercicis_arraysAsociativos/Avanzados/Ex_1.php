@@ -23,7 +23,6 @@ Ventas:
 Manipular arrays multidimensionales y agrupar datos utilizando estructuras asociativas.
 */
 
-
 $empleados = [
     ["nombre" => "Carlos", "posición" => "Desarrollador", "departamento" => "IT"],
     ["nombre" => "Ana", "posición" => "Diseñadora", "departamento" => "Marketing"],
@@ -31,36 +30,35 @@ $empleados = [
     ["nombre" => "Marta", "posición" => "Jefa de Producto", "departamento" => "Ventas"]
 ];
 
+//Función que agrupa por departamento
+
 function agruparPorDepartamento($empleados): array {
     $agrupadosPorDepartamento = [];
 
     foreach ($empleados as $empleado) {
-        $departamento = $empleado['departamento'];
-        $agrupadosPorDepartamento[$departamento][] = $empleado;
-    }
+        $departamento = $empleado['departamento']; 
 
+        $agrupadosPorDepartamento[$departamento][] = $empleado['nombre'];
+    }
     return $agrupadosPorDepartamento;
 }
 
-function imprimirEmpleadosPorDepartamento($agrupados){
-    echo "<h2> EMPLEADOS AGRUPADOS POR DEPARTAMENTO </h2>";
+function imprimirEmpleadosPorDepartamento($arrayAgrupado){
+    echo "<h1>Trabajadores por departamento</h1>";
 
-    foreach ($agrupados as $departamento => $empleados){
-        echo "<h3>Departamento: $departamento </h3>";
-        echo "<ul>";
-        foreach ($empleados as $empleado){
-            echo "<li>";
-            echo "Nombre: " . $empleado['nombre'] . " | ";
-            echo "Posición: " . $empleado['posición'];
-            echo "</li>";
-        }
-        echo "</ul>";
+    foreach ($arrayAgrupado as $departamento => $nombres) {
+        echo "<h2>$departamento </h2>";
+        foreach ($nombres as $nombre) { //Se hace otro foreach porque $nombre és ptro array a recorrer
+            echo "· $nombre<br>";
+        } 
     }
-
 }
 
-$agrupados = agruparPorDepartamento($empleados);
-imprimirEmpleadosPorDepartamento($agrupados);
+//main
 
+$agrupadosPorEmpleados = [];
+$agrupadosPorEmpleados = agruparPorDepartamento($empleados);
+
+imprimirEmpleadosPorDepartamento($agrupadosPorEmpleados);
 
 ?>
