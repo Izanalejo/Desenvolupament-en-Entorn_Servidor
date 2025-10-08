@@ -29,8 +29,57 @@ $estudiantes = [
     ["nombre" => "Luis", "calificaciones" => [4, 3, 5]]
 ];
 
+function calcularPromedio($calificaciones){
+    return array_sum($calificaciones) / count($calificaciones);
+}
 
-function calcularPromedio($calificaciones) {
+function agregarPromedio($estudiante){
+    $promedio = calcularPromedio($estudiante['calificaciones']);
+    $estudiante['promedio'] = $promedio;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* function calcularPromedio($calificaciones) {
     return array_sum($calificaciones) / count($calificaciones);
 }
 
@@ -63,7 +112,7 @@ $resultado = array_map('crearArrayFinal', $estudiantesFiltrados);
 
 echo "<pre>";
 print_r($resultado);
-echo "</pre>";
+echo "</pre>"; */
 
 
 

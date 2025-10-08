@@ -20,7 +20,57 @@ $productos = [
     ["nombre" => "Monitor", "precio" => 300, "stock" => 20]
 ];
 
-usort($productos, function($a, $b) {
+
+function preuDesc($productos){
+    $agrupatsPerPreu = [];
+
+    foreach ($productos as $product) {
+        $nombre = $product['nombre'];
+        $agrupatsPerPreu[$nombre] = $product['precio'];
+    }
+    return $agrupatsPerPreu;
+}
+
+function imprimirProductes($preuDesc){
+    echo "<h1>Productes endreçats per preu descendent</h1>";
+    foreach ($preuDesc as $nombre => $precio) {
+        echo "$nombre:"  . "$precio<br><br>" ;
+    }
+    
+}
+
+//main
+$ordenar = [];
+$ordenar = preuDesc($productos);
+$result = [];
+$result = imprimirProductes($ordenar);
+
+echo "<pre>";
+print_r($result);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* usort($productos, function($a, $b) {
     // Ordenar por precio descendente
     if ($a['precio'] !== $b['precio']) {
         return $b['precio'] <=> $a['precio'];
@@ -33,5 +83,5 @@ usort($productos, function($a, $b) {
 foreach ($productos as $producto) {
     echo "{$producto['nombre']} - Precio: {$producto['precio']} - Stock: {$producto['stock']}<br>";
 }
-
+ */
 ?>
