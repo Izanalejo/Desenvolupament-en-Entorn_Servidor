@@ -29,70 +29,24 @@ $estudiantes = [
     ["nombre" => "Luis", "calificaciones" => [4, 3, 5]]
 ];
 
-function calcularPromedio($calificaciones){
+//Funcion que calcula el promedio de notas
+function calcularPromedio($calificaciones) {
     return array_sum($calificaciones) / count($calificaciones);
 }
 
-function agregarPromedio($estudiante){
-    $promedio = calcularPromedio($estudiante['calificaciones']);
-    $estudiante['promedio'] = $promedio;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* function calcularPromedio($calificaciones) {
-    return array_sum($calificaciones) / count($calificaciones);
-}
-
+//Función que añade el índice "promedio"
 function agregarPromedio($estudiante) {
     $promedio = calcularPromedio($estudiante['calificaciones']);
     $estudiante['promedio'] = $promedio;
     return $estudiante;
 }
 
+// Función que filtra los promedios > 6
 function filtrarPorPromedio($estudiante) {
     return $estudiante['promedio'] >= 6;
 }
 
+//Funcion que crea un array final con nombre y promedio 
 function crearArrayFinal($estudiante) {
     return [
         'nombre' => $estudiante['nombre'],
@@ -100,22 +54,24 @@ function crearArrayFinal($estudiante) {
     ];
 }
 
+//Funcion que imprime el array final
+function imprimirArrayFinal($estudiantes){
+    echo "<h1>Estudiantes con promedio mayor a 6</h1>";
+    foreach ($estudiantes as $estudiante) {
+       echo $estudiante['nombre'] . ": " . $estudiante['promedio'] . "<br><br>";
+    }
+}
 
 // 1. Agregar promedios
 $estudiantesConPromedio = array_map('agregarPromedio', $estudiantes);
 
+
 // 2. Filtrar por promedio >= 6
 $estudiantesFiltrados = array_filter($estudiantesConPromedio, 'filtrarPorPromedio');
+
 
 // 3. Crear array final con solo nombre y promedio
 $resultado = array_map('crearArrayFinal', $estudiantesFiltrados);
 
-echo "<pre>";
-print_r($resultado);
-echo "</pre>"; */
-
-
-
-
-
+imprimirArrayFinal($resultado);
 ?>

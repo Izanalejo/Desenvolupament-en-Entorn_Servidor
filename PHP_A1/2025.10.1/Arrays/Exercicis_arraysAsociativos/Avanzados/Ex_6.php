@@ -26,8 +26,50 @@ $usuarios = [
     "Carlos" => ["fútbol", "videojuegos", "música"]
 ];
 
+function crearIndiceInvertido($usuarios){
+    $indiceInvertido = [];
+    foreach ($usuarios as $usuario => $intereses) {
+        foreach ($intereses as $interes) {
+        $indiceInvertido[$interes][] = $usuario;
+        }
+    }
+    return $indiceInvertido;
+}
 
-function crearIndiceInvertido($usuarios) {
+function imprimirResultados($arrayInvertido){
+    echo "<h1>Intereses y usuarios</h1>";
+    foreach ($arrayInvertido as $interes => $nombres) {
+        echo "<strong>$interes:</strong> ";
+        echo implode(", ", $nombres); // Une los nombres con coma
+        echo "<br><br>";
+    }
+}
+
+//main
+
+$resultado = crearIndiceInvertido($usuarios);
+
+imprimirResultados($resultado);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* function crearIndiceInvertido($usuarios) {
     $indiceInvertido = [];
     
     // Recorremos cada usuario y sus intereses
@@ -50,6 +92,6 @@ $resultado = crearIndiceInvertido($usuarios);
 echo "<pre>";
 print_r($resultado);
 echo"</pre>";
-
+ */
 
 ?>
