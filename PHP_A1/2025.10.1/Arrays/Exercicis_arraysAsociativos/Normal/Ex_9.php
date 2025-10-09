@@ -18,8 +18,7 @@ $estudiante = [
     "Mitjana" => 8.7
 ];
 
-
-echo json_encode($estudiante)
+echo json_encode($estudiante);
 
 
 
