@@ -27,13 +27,11 @@ function main(): void{
             <title>Invitation</title>
         </head>
             <body>
-                <pre>
                     Dear {{name}},
                     I would like to invite you to my birthday party!
                     Please come next Friday at 18:00 to my house.
                     Sincerely,
                     Your best friend.
-                </pre>
             </body>
         </html>
     END_OF_TEMPLATE;

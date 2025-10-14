@@ -12,8 +12,6 @@ function make_invitations(string $invitation_template, array $namesArray): array
     }
     return $invitations_array;
 }
-
-
 //-------------------------------------------------------------------------
 function main(): void{
     $namesArray = ['John', 'Mary','Lucy','Ryan'];
