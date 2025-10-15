@@ -24,8 +24,6 @@ function main(): void {
     foreach ($invitation_array as $invitation) {
         echo $invitation;
     }
-
-    echo '</body></html>';
 }
 
 main();

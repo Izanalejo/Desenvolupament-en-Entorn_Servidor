@@ -1,6 +1,6 @@
 body {
                     font-family: 'Segoe UI', sans-serif;
-                    background: linear-gradient(135deg, #ffe8a3, #ffd1dcff);
+                    background-color: #ffe8a3;
                     display: flex;
                     flex-direction: column;
                     align-items: center;
