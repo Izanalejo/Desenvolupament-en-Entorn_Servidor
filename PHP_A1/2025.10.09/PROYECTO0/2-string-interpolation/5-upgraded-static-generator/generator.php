@@ -6,7 +6,7 @@ function invitacion($invitados, $event_date, $location)
     $invitacion = render_template('./invitacion.template.php',
     [
     'friend' => $friend,
-    'my_name' => 'Eduardo Rubio',
+    'my_name' => 'Izan Alejo',
     'event_date' => $event_date,
     'location' => $location
     ]);
