@@ -1,17 +1,35 @@
 <?php
 // generate.php
 
-// Paso 2 – Recibir los datos del formulario
+//Recibir los datos del formulario
 $event_date = $_POST['event_date'];
 $location = $_POST['location'];
 
+//Marcar info de la imagen
+$fileTmpPath = $_FILES['files']['tmp_name'];
+$fileName = $_FILES['files']['name'];
+$fileSize = $_FILES['files']['size'];
+$fileType = $_FILES['files']['type'];
 
-// Paso 3 – Leer la lista de invitados
-$invitados = file("invitados.txt", FILE_IGNORE_NEW_LINES);
+// Permitir tipos y peso de las imágenes
+$allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+$maxSize = 2 * 1024 * 1024;
 
 
-// Paso 4 – Generar invitaciones con interpolación
+// Guardar imagen en la carpeta
+$imagen_nombre = basename($fileName);
+$file_image = "uploads/" . $imagen_nombre;
+
+move_uploaded_file($fileTmpPath, $file_image);
+
+$invitados = file("invitados.txt", FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+
+
+//Generar invitaciones
 foreach ($invitados as $nombre) {
+    $nombre = trim($nombre); // Limpiar espacios
+    if (empty($nombre)) continue;
+    
     $html = <<<HTML
 <!DOCTYPE html>
 <html lang="es">
@@ -23,17 +41,17 @@ foreach ($invitados as $nombre) {
   <h2>Invitación especial para $nombre</h2>
   <p>Te invitamos cordialmente a nuestro evento el día <strong>$event_date</strong>.</p>
   <p>El evento se celebrará en <strong>$location</strong>.</p>
-  <p>¡Esperamos contar contigo!</p>
+  <p>¡Esperamos contar contigo!</p><br>
+  <img src="../uploads/$imagen_nombre" alt="Logo del evento" style="max-width:300px;">
 </body>
 </html>
 HTML;
-
-    // Guardar archivo HTML individual
+    
     $file_name = "output/invitacion_" . strtolower(str_replace(' ', '_', $nombre)) . ".html";
     file_put_contents($file_name, $html);
 }
 
-// Paso 5 – Crear y empaquetar en ZIP
+//Crear ZIP
 $zip = new ZipArchive();
 $zip_name = "invitaciones.zip";
 
