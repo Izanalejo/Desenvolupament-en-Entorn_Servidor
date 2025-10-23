@@ -1,9 +1,12 @@
 <?php
 $page_title = "Inicio";
 $current_page = "inicio";
-include 'includes/header.php';
+require_once 'includes/header.php';
 
 ?>
+<head>
+    <link rel="stylesheet" href="css/style.css">
+</head>
 
 <main class="container">
     <section class="hero">

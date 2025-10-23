@@ -1,9 +1,12 @@
 <?php
 $page_title = "Acerca de";
 $current_page = "about";
-include 'includes/header.php';
+require_once 'includes/header.php';
 ?>
 
+<head>
+    <link rel="stylesheet" href="css/style.css">
+</head>
 <main class="container">
     <section class="about">
         <h1>Acerca de Nosotros</h1>
@@ -11,4 +14,4 @@ include 'includes/header.php';
     </section>
 </main>
 
-<?php include 'includes/footer.php'; ?>
+<?php require_once 'includes/footer.php'; ?>

@@ -1,5 +1,4 @@
 <?php
-
 $page_title = "Ejercicio formularios";
 $current_page = "formularios";
 require_once '../includes/header.php';
@@ -20,9 +19,9 @@ $texto_lista = 'Ejercicio';
 
         <?php
 
-            for($i=401; $i <= 407; $i++){
+            for($i=402; $i <= 407; $i++){
                 $texto_lista = 'Ejercicio - ' . $i;
-                echo "<li><a href='ejercicios/{$i}.php'>{$texto_lista}<a></li>";
+                echo "<li><a href='ejercicios/Ej_{$i}/{$i}formulario.php'>{$texto_lista}<a></li>";
             }
         
         ?>
