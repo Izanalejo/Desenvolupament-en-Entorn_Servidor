@@ -13,19 +13,19 @@
           <a href="<?=$dir?>index.php"  class="nav-link active" aria-current="page" >Inicio</a>
         </li>
         <li class="nav-item">
-          <a href="<?=$dir?>about.php" class="nav-link" href="#">Acerca de</a>
+          <a href="<?=$dir?>about.php" class="nav-link">Acerca de</a>
         </li>
         <li class="nav-item">
-          <a href="services.php"  class="nav-link" href="#">Servicios</a>
+          <a href="<?=$dir?>servicios/index.php"  class="nav-link">Servicios</a>
         </li>
         <li class="nav-item">
-          <a href="contact.php"  class="nav-link" href="#">Contactanos</a>
+          <a href="<?=$dir?>contacto/index.php"  class="nav-link" href="#">Contactanos</a>
         </li>
         <li class="nav-item">
-          <a href="<?=$dir?>/cookies_sesiones/index.php"  class="nav-link" href="#">Cookies y sesiones</a>
+          <a href="<?=$dir?>cookies_sesiones/index.php"  class="nav-link" href="#">Cookies y sesiones</a>
         </li>
         <li class="nav-item">
-          <a href="formularios/index.php" class="nav-link">Formularios</a>
+          <a href="<?=$dir?>formularios/index.php" class="nav-link">Formularios</a>
         </li>
       </ul>
       

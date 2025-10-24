@@ -1,5 +1,5 @@
 <?php
-$page_title = "Ejercicio de Cookies y Sesiones";
+$page_title = "Página de contacto";
 $current_page = "formularios";
 require_once '../includes/header.php';
 
@@ -7,8 +7,6 @@ require_once '../includes/header.php';
 $texto_lista = 'Ejercicio';
 
 ?>
-
-
 <head>
     <link rel="stylesheet" href="../css/style.css">
 </head>
@@ -18,11 +16,9 @@ $texto_lista = 'Ejercicio';
         <ol>
 
         <?php
-            echo "<ol>";
-            echo "<li><a href= 'EJEMPLO_0_COOKIES.php'>EJEMPLO 0 COOKIES</a></li>";
-            echo "<li><a href= 'Ejemplo_0_sesiones.php'>EJEMPLO 0 SESIONES</a></li>";
-            echo "</ol>";
 
+          
+        
         ?>
         </ol>
     </section>
