@@ -21,6 +21,11 @@ $texto_lista = 'Ejercicio';
             echo "<ol>";
             echo "<li><a href= 'EJEMPLO_0_COOKIES.php'>EJEMPLO 0 COOKIES</a></li>";
             echo "<li><a href= 'Ejemplo_0_sesiones.php'>EJEMPLO 0 SESIONES</a></li>";
+            
+            for($i=408; $i <= 412; $i++){
+                $texto_lista = 'Ejercicio - ' . $i;
+                echo "<li><a href='ejercicios/{$i}.php'>{$texto_lista}<a></li>";
+            }
             echo "</ol>";
 
         ?>

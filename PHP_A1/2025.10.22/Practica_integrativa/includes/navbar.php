@@ -27,6 +27,10 @@
         <li class="nav-item">
           <a href="<?=$dir?>formularios/index.php" class="nav-link">Formularios</a>
         </li>
+        </li>
+        <li class="nav-item">
+          <a href="<?=$dir?>autentication/index.php" class="nav-link">Autenticación</a>
+        </li>
       </ul>
       
       </form>
