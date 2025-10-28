@@ -19,9 +19,9 @@ $texto_lista = 'Ejercicio';
 
         <?php
 
-            for($i=413; $i <= 415; $i++){
+            for($i=410; $i <= 415; $i++){
                 $texto_lista = 'Ejercicio - ' . $i;
-                echo "<li><a href='ejercicios/{$i}.php'>{$texto_lista}<a></li>";
+                echo "<li><a href='ejercicios/ej_{$i}/{$i}.php'>{$texto_lista}<a></li>";
             }
         
         ?>
