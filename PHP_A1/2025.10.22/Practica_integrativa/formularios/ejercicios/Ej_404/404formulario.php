@@ -1,20 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ejercicio patatas</title>
+  <meta charset="UTF-8">
+  <title>Subida de archivo</title>
 </head>
 <body>
-    <form>
-        <h1>Comanda de Patates</h1>
-        <hr>
-        <label for="quantitat">Quantitat (kg):</label>
-        <input type="number" name="quanitat">
-        <button type="submit">Enviar</button>
+  <h2>Subir archivo</h2>
 
+  <form action="404subida.php" method="POST" enctype="multipart/form-data">
+    <label for="archivo">Selecciona un archivo:</label>
+    <input type="file" name="archivo" id="archivo" required><br><br>
 
+    <label for="anchura">Anchura:</label>
+    <input type="number" name="anchura" id="anchura" required><br><br>
 
-    </form>
+    <label for="altura">Altura:</label>
+    <input type="number" name="altura" id="altura" required><br><br>
+
+    <input type="submit" value="Subir">
+  </form>
 </body>
 </html>

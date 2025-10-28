@@ -19,7 +19,7 @@ $texto_lista = 'Ejercicio';
 
         <?php
 
-            for($i=402; $i <= 407; $i++){
+            for($i=402; $i <= 405; $i++){
                 $texto_lista = 'Ejercicio - ' . $i;
                 echo "<li><a href='ejercicios/Ej_{$i}/{$i}formulario.php'>{$texto_lista}<a></li>";
             }
