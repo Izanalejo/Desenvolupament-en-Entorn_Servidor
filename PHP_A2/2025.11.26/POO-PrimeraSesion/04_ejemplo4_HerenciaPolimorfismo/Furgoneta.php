@@ -16,7 +16,7 @@ class Furgoneta extends Vehiculo{
     ){
         parent::__construct($marca,$modelo,$color,$propietario);
 
-        $this.->altura = $altura; 
+        $this->altura = $altura; 
     }
 }
 

@@ -66,7 +66,7 @@ setcookie('visitas', $visitas, time() + (30 * 24 * 60 * 60), '/');
         <tr>
             <th>Dato</th>
             <th>Valor</th>
-        </tr>
+        </tr> 
         <tr>
             <td>Primera visita</td>
             <td><?php echo $esPrimeraVisita ? 'Sí' : 'No'; ?></td>

@@ -2,8 +2,8 @@
 session_start();
 
 
-$usuario = $_POST['usuario'] ?? '';
-$password = $_POST['password'] ?? '';
+$usuario = $_POST['usuario'] ;
+$password = $_POST['password'] ;
 
 if($usuario === 'usuario' && $password === 'usuario' ){
     $SESSION['usuario'] = $usuario;
