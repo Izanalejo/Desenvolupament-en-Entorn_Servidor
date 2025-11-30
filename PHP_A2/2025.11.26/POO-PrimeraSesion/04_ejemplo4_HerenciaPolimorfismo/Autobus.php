@@ -17,30 +17,16 @@
 
             $this->empresa = $empresa;
         }
-
-        
-
-            /**
-             * Get the value of empresa
-             */ 
             public function getEmpresa()
             {
                         return $this->empresa;
             }
-
-            /**
-             * Set the value of empresa
-             *
-             * @return  self
-             */ 
             public function setEmpresa($empresa)
             {
                         $this->empresa = $empresa;
                         return $this;
             }
-
             //METHODS
-
             public function puedeAparcar(string $planta): bool{
                 return $planta ==="superficie";
             }
