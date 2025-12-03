@@ -1,5 +1,5 @@
 <?php
-class Empleado extends Persona
+abstract class Empleado extends Persona
 {
     private int $sueldo;
     private array $telefono = [];
@@ -7,14 +7,29 @@ class Empleado extends Persona
     //Variable estática compartida para todos los empleados
     private static int $sueldoTope = 3333;
 
-    public function __construct(string $nombre, string $apellido, int $sueldo = 1000, array $telefono = [])
+    private const  EDAD_IMPUESTOS = 21;
+
+    public function __construct(string $nombre, string $apellido, int $edad,  int $sueldo = 1000, array $telefono = [])
     {
-        parent::__construct($nombre, $apellido);
+        parent::__construct($nombre, $apellido, $edad);
         $this->sueldo = $sueldo;
         $this->telefono = $telefono;
     }
+    //GETTERS Y SETTERS
+    public static function getSueldoTope()
+    {
+        return self::$sueldoTope;
+    }
 
+    public static function setSueldoTope(int $valor)
+    {
+        return self::$sueldoTope= $valor;
+    }
 
+    public function getTelefono(): array
+    {
+        return $this->telefono;
+    }
     public function getSueldo(): int {
         return $this->sueldo;
     }
@@ -36,30 +51,8 @@ class Empleado extends Persona
     }
 
     public function debePagarImpuestos(): bool {
-        if ($this->sueldo > self::$sueldoTope) {
-            echo "Debe pagar impuestos!<br>";
-            return true;
-        } else {
-            echo "No debe pagar impuestos!<br>";
-            return false;
-        }
+        return $this->sueldo > self::$sueldoTope && $this->getEdad() > self::EDAD_IMPUESTOS;
     }
-
-    public static function getSueldoTope()
-    {
-        return self::$sueldoTope;
-    }
-
-    public static function setSueldoTope(int $valor)
-    {
-        return self::$sueldoTope= $valor;
-    }
-
-    public function getTelefono(): array
-    {
-        return $this->telefono;
-    }
-
 
     public static function toHtml(Empleado $emp): string
 {
@@ -81,7 +74,6 @@ class Empleado extends Persona
     } else {
         $html .= "<p>No tiene teléfonos guardados.</p>";
     }
-
     return $html;
 }
 }

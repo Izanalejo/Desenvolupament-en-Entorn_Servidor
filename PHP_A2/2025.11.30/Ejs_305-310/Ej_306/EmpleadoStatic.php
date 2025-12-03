@@ -7,9 +7,9 @@ class Empleado
     private array $telefono = [];
 
     //Variable estática compartida para todos los empleados
-    private static int $sueldoTope = 3333;
+    private static float $sueldoTope = 3333;
 
-    public function __construct(string $nombre, string $apellido, int $sueldo = 1000, array $telefono = [])
+    public function __construct(string $nombre, string $apellido, float $sueldo = 1000, array $telefono = [])
     {
         $this->nombre = $nombre;
         $this->apellido = $apellido;

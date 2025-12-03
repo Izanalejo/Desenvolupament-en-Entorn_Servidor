@@ -27,7 +27,7 @@ class Empleado extends Persona
         if (empty($this->telefono)) {
             return "No hay teléfonos guardados de " . $this->getNombreCompleto() . "<br>";
         }
-        return $this->nombre . ": " . implode(", ", $this->telefono) . "<br>";
+        return $this->getNombre() . ": " . implode(", ", $this->telefono) . "<br>";
     }
 
     public function eliminarTelefonos(): void {
@@ -85,8 +85,5 @@ class Empleado extends Persona
     return $html;
 }
 }
-
-
-
 ?>   
 
