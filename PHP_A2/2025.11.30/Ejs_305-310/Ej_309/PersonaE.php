@@ -15,38 +15,21 @@ class Persona {
     public function getNombreCompleto(): string {
         return $this->nombre . " " . $this->apellido;
     }
-        public function getNombre()
-        {
-                return $this->nombre;
-        }
-        public function setNombre($nombre)
-        {
-                $this->nombre = $nombre;
-
-                return $this;
-        }
-        public function getApellido()
-        {
-                return $this->apellido;
-        }
-        public function setApellido($apellido)
-        {
-                $this->apellido = $apellido;
-
-                return $this;
-        }
-        public function getEdad()
+    public function getEdad()
         {
                 return $this->edad;
         }
+
         public function setEdad($edad)
         {
                 $this->edad = $edad;
 
                 return $this;
         }
+
+    // MÉTODO ESTÁTICO NUEVO
+    public static function toHtml(Persona $p): string {
+        return "<p>Nombre completo: " . $p->getNombreCompleto() . "</p>";
+    }
 }
-
-
-
 ?>

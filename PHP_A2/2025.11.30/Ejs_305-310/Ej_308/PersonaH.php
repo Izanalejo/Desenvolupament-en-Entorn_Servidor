@@ -13,8 +13,10 @@ class Persona {
     public function getNombreCompleto(): string {
         return $this->nombre . " " . $this->apellido;
     }
+
+    // MÉTODO ESTÁTICO NUEVO
+    public static function toHtml(Persona $p): string {
+        return "<p>Nombre completo: " . $p->getNombreCompleto() . "</p>";
+    }
 }
-
-
-
 ?>

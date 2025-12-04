@@ -1,16 +1,13 @@
 <?php
-require_once "PersonaH.php";
-require_once "EmpleadoE.php";
+require_once ("PersonaE.php");
+require_once ("EmpleadoE.php");
 
-$emp1 = new Empleado("Ana", "García", 25, 3500);
-$emp2 = new Empleado("Luis", "Martínez", 20, 4000);
+$e1 = new Empleado("Ana", "Lopez", 18, 2500, );
+$e2 = new Empleado("Luis", "Garcia", 22, 4000, [123456789, 987654321]);
 
-$emp1->debePagarImpuestos(); // Debe pagar impuestos
-$emp2->debePagarImpuestos(); // No debe pagar impuestos 
+echo Empleado::toHtml($e1);
+echo Empleado::toHtml($e2);
 
-echo $emp1 ->getNombreCompleto(). "debe pagar impuestos: " . ($emp1->debePagarImpuestos() ? "Sí" : "No") . "<br>";
-echo $emp2 ->getNombreCompleto(). "debe pagar impuestos: " . ($emp2->debePagarImpuestos() ? "Sí" : "No") . "<br>";
-
-
-
+echo $e1->getNombreCompleto() . " Debe pagar impuestos? " . ($e1->debePagarImpuestos() ? "SI<br>" : "NO<br>");
+echo $e2->getNombreCompleto() . " Debe pagar impuestos? " . ($e2->debePagarImpuestos() ? "SI<br>" : "NO<br>");
 ?>
