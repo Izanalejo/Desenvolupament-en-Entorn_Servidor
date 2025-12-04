@@ -2,8 +2,9 @@
 namespace TrabajadorE;
 
 require_once("Trabajador.php");
+require_once("JSerializable.php");
 
-class Gerente extends Trabajador {
+class Gerente extends Trabajador implements \JSerializable {
     private float $salarioBase;
 
     public function __construct(string $nombre, string $apellido, int $edad, float $salarioBase, array $telefonos = []) {
@@ -28,5 +29,18 @@ class Gerente extends Trabajador {
 
         return $html;
     }
+
+    //METODOS DE LA INTERFACE JSerializable 
+    public function toJSON(): string{
+        $mapa = new \stdClass();
+        foreach ($this as $clave => $valor) {
+            $mapa->$clave = $valor;
+        }
+        return json_encode($mapa);
+    }
+    public function toSerialize(): string{
+        return "";
+    }
 }
+
 ?>

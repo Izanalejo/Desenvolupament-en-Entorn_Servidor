@@ -1,8 +1,4 @@
 <?php
-require_once("PersonaE.php");
-require_once("Trabajador.php");
-require_once("Empleado.php");
-require_once("Gerente.php");
 
 use TrabajadorE\Empleado;
 use TrabajadorE\Gerente;
@@ -14,7 +10,7 @@ $ger2 = new Gerente("Maria", "Sanchez", 50, 4000);
 $emp1 = new Empleado("Ana", "Lopez", 25, 160, 15.5, [123456789]);
 $emp2 = new Empleado("Luis", "Garcia", 30, 200, 20, [987654321, 666777888]);
 
- // Crear gerentes
+// Crear gerentes
 
 // Mostrar información
 echo $emp1->toHtml();
@@ -27,24 +23,4 @@ $trabajadores = [$emp1, $emp2, $ger1, $ger2];
 foreach ($trabajadores as $t) {
     echo $t->getNombreCompleto() . " Debe pagar impuestos? " . ($t->debePagarImpuestos() ? "SI<br>" : "NO<br>");
 }
- 
-
-
-
-
-
-
-
-
-
-
-/* $cadena_serializada = serialize($ger1);
-
-echo $cadena_serializada . "<br><br>"; ;
-
-$cadena_deserializada = unserialize($cadena_serializada);
-
-echo "<pre>";
-var_dump($cadena_deserializada);
-echo "</pre>"; */
 ?>

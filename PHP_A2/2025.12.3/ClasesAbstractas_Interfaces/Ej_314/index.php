@@ -14,7 +14,7 @@ $ger2 = new Gerente("Maria", "Sanchez", 50, 4000);
 $emp1 = new Empleado("Ana", "Lopez", 25, 160, 15.5, [123456789]);
 $emp2 = new Empleado("Luis", "Garcia", 30, 200, 20, [987654321, 666777888]);
 
- // Crear gerentes
+ /* // Crear gerentes
 
 // Mostrar información
 echo $emp1->toHtml();
@@ -28,23 +28,18 @@ foreach ($trabajadores as $t) {
     echo $t->getNombreCompleto() . " Debe pagar impuestos? " . ($t->debePagarImpuestos() ? "SI<br>" : "NO<br>");
 }
  
+ */
 
 
-
-
-
-
-
-
-
-
-/* $cadena_serializada = serialize($ger1);
-
-echo $cadena_serializada . "<br><br>"; ;
-
-$cadena_deserializada = unserialize($cadena_serializada);
-
-echo "<pre>";
-var_dump($cadena_deserializada);
-echo "</pre>"; */
 ?>
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+ </head>
+ <body>
+    <p><b>JSON:</b><?=  $ger1->toJSON(); ?></p>
+ </body>
+ </html>ml
