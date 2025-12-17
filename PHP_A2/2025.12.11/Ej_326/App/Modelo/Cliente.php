@@ -92,6 +92,9 @@ class Cliente
     }   
 
     public function listarAlquileres(): void{
-        
+        echo "<h3>Soportes alquilado por {$this->nombre}:</h3> ";
+        foreach ($this->soportesAlquilados as $soporte) {
+            echo "<ul><li>" . $soporte->titulo . "</li></ul>";
+        }   
     }
 }

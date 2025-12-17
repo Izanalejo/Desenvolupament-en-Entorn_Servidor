@@ -1,6 +1,12 @@
 <?php
+/* Al crear "Soporte.php" en clase abstracta aconseguim el següent: 
+ * 
+ * No poder crear un objecte Soporte directament (Donat que no té molt sentit crear un Soporte indivual
+ * sempre haurà de ser de algun tipus DVD, Cinta, Juego...)
+ * 
+ * */
 namespace App\Modelo;
-class Soporte{
+abstract class Soporte{
     public string $titulo;
     protected int $numero;
     private float $precio;

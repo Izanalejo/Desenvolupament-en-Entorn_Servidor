@@ -1,5 +1,5 @@
 <?php
-require_once "App\Modelo\Soporte.php";
+require_once "App/Modelo/Soporte.php";
 require_once __DIR__ . "/App/Modelo/CintaVideo.php";
 require_once __DIR__ . "/App/Modelo/Dvd.php";
 require_once __DIR__ . "/App/Modelo/Juego.php";
