@@ -12,13 +12,24 @@ class CategoryView {
 
 public function display($template=NULL, $content=NULL){
 
-    //ZONA del MENU
+    //ZONA 1, Zona del MENU
     include ("view/menu/CategoryMenu.html");
 
-    //ZONA RESERVADA PARA LAS TABLAS O PARA LOS FORUMLARIOS
+    //ZONA2,  RESERVADA PARA LAS TABLAS O PARA LOS FORUMLARIOS
     if (!empty($template)){ //O ES NULL
       include($template);//incluimos lo que queremos visualizar: tabla o formulario
+    
+    //ZONA 3, Zona de mensajeria
+    //Imprimir los mensajes memorizadps en las varibañes de sesión
+    //$_SESSION['error' y $]
+
+ 
+    include("view/form/MessageForm.php");
     }
+    
+    
+  
 }
+
 
 }

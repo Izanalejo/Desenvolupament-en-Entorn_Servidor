@@ -39,10 +39,15 @@ class CategoryController implements ControllerInterface {
      * @return none
     **/
     public function processRequest() {
+
+        $_SESSION['info'] = [];
+        $_SESSION['error'] = [];
         
         $request=NULL;
 
-        if(isset($_GET["option"])){
+        if(isset($_POST["action"])){ //La petición viene por el FORMULARIO
+            $request = ($_POST["action"]);
+        }else if(isset($_GET["option"])){ //La petición viene por la URL, por GET
             $request=$_GET["option"];
         }
 
@@ -52,6 +57,9 @@ class CategoryController implements ControllerInterface {
                 break;
             case "form_add":
                 $this->formAdd();
+                break;
+            case "add":
+                $this->add();
                 break;
             default:
                 $this->view->display();
@@ -77,14 +85,13 @@ class CategoryController implements ControllerInterface {
 
 
     }
-  
     /**
      * Aquest mètode ens mostra totes les categories
      * @param none
      * @return none
     **/
     public function formAdd() {
-        //to do
+        $this->view->display("view/form/CategoryFormAdd.php");
      }
 
     /**
@@ -93,7 +100,17 @@ class CategoryController implements ControllerInterface {
      * @return none
     **/
     public function add() {
-        //to do
+        $categoryValid = CategoryFormValidation::checkData(CategoryFormValidation::ADD_FIELDS);
+
+        if(empty($_SESSION['error'])){
+            $result = $this->model->add($categoryValid);
+            if($result == true){
+                $_SESSION['info'] = CategoryMessage::INF_FORM['insert'];
+            }else{
+                $_SESSION['error'] = CategoryMessage::ERR_DAO['insert'];
+            }
+        }
+        $this->view->display("view/form/CategoryFormAdd.php", $categoryValid);
     }
 
     //altres mètodes necessaris: to do

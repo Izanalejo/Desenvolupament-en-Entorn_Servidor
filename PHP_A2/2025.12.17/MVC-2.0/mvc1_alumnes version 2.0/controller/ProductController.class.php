@@ -1,14 +1,16 @@
 <?php
-//crido tot el que necessitaré fer servir
+//crido de manera general tot el que necessitaré cridar
 
-require_once "controller/ControllerInterface.php";
-require_once "view/CategoryView.class.php";
-require_once "model/persist/CategoryDAO.class.php";
-require_once "model/Category.class.php";
-require_once "util/CategoryMessage.class.php";
-require_once "util/CategoryFormValidation.class.php";
+//to do
 
-class CategoryController implements ControllerInterface {
+require_once "";
+require_once "";
+require_once "";
+require_once "";
+require_once "";
+require_once "";
+
+class ProductController implements ControllerInterface {
 
     //atributs que segur que tindran tots els controladors
     private $view;
@@ -25,10 +27,10 @@ class CategoryController implements ControllerInterface {
     public function __construct() {
 
         // càrrega de la vista
-        $this->view=new CategoryView();
+        $this->view=new ProductView();
 
         // càrrega del model de dades
-        $this->model=new CategoryDAO();
+        $this->model=new ProductDAO();
     }
 
    
@@ -40,46 +42,22 @@ class CategoryController implements ControllerInterface {
     **/
     public function processRequest() {
         
-        $request=NULL;
-
-        if(isset($_GET["option"])){
-            $request=$_GET["option"];
-        }
-
-        switch ($request){
-            case "list_all":
-                $this->listAll();
-                break;
-            case "form_add":
-                $this->formAdd();
-                break;
-            default:
-                $this->view->display();
-        }
+        //to do
     }
 
     /**
-     * Aquest mètode ens mostra totes les categories
+     * Aquest mètode ens mostra tots els productes
      * @param none
      * @return none
     **/
     
     public function listAll() {
-       $categories=array();
-       //llamamos al modelo, es obligatorio
-       $categories=$this->model->listAll(); //$categories es un array de objetos categoria
-
-       if (!empty($categories)){
-            $this->view->display("view/form/CategoryList.php", content: $categories);
-       }else{
-            $this->view->display("view/form/CategoryList.php");
-       }
-
-
+       //to do
     }
   
     /**
-     * Aquest mètode ens mostra totes les categories
+     * Aquest mètode ens mostra el formulari necessari per afegir un nou 
+     * producte
      * @param none
      * @return none
     **/
@@ -88,7 +66,7 @@ class CategoryController implements ControllerInterface {
      }
 
     /**
-     * Aquest mètode ens afegeix la categoria al fitxer
+     * Aquest mètode ens afegeix el producte al fitxer
      * @param none
      * @return none
     **/

@@ -1,7 +1,6 @@
 <div id="content">
     <fieldset>
         <legend>Category list</legend>   
-        <h1>Titulo</h1> 
         <?php
             if (isset($content)) {
                 echo <<<EOT
