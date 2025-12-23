@@ -1,22 +1,23 @@
 <?php
-require_once "model/Category.class.php";
+require_once "model/Product.class.php";
 require_once "model/persist/DBConnect.class.php";
 require_once "model/persist/ModelInterface.php";
-require_once "util/CategoryMessage.class.php";
+require_once "util/ProductMessage.class.php";
+
 
 
 //class to handle a category
-class CategoryDAO implements ModelInterface {
+class ProductDAO implements ModelInterface {
 
     //propietat que tenen tots els DAO per connectar-se a l'arxiu i poder fer les accions bàsiques generals
     private $dbConnect;
 
     public function __construct() {
-        $this->dbConnect= new DBConnect("model/resources/categories.txt");
+        $this->dbConnect= new DBConnect("model/resources/products.txt");
     }
 
      /**
-    * Recull totes les categories
+    * Recull tots els productes
     * @param void
     * @return vector amb tots els objectes de categories
     */
@@ -29,8 +30,8 @@ class CategoryDAO implements ModelInterface {
             foreach($linesToFile as $line){
                 if(!empty($line)){
                     $pieces=explode(";", $line);
-                    $category=new Category($pieces[0],$pieces[1]);
-                    $response[]=$category;
+                    $product=new Product($pieces[0],$pieces[1],$pieces[2],$pieces[3],$pieces[4],$pieces[5]);
+                    $response[]=$product;
                 }
             }
         }
@@ -39,32 +40,34 @@ class CategoryDAO implements ModelInterface {
     }
 
     /**
-    * Afegeix una categoria
-    * @param Category objecte
+    * Afegeix un producte
+    * @param Product objecte
     * @return TRUE O FALSE
     */
-    public function add($category){
-		$result = $this->dbConnect->addNewLine($category->writingNewLine());
+    public function add($product){
+		$result = $this->dbConnect->addNewLine($product->writingNewLine());
 
+        if($result == false){
+            $_SESSION['error'] = ProductMessage::ERR_DAO['insert'];
+        }
         return $result;
 	}
 
 
     /**
-    * Modificar una categoria
-    * @param Category objecte donat
+    * Modificar un producte
+    * @param Product objecte donat
     * @return TRUE o FALSE
     */
-    public function modify($category){
+    public function modify($product){
 
 		// to do
-	    
     }
 
 
     /**
-    * Esborra una categoria donat l' id
-    * @param $id identificador de la categoria a buscar
+    * Esborra un producte donat l' id
+    * @param $id identificador del producte a buscar
     * @return TRUE O FALSE
     */
     public function delete($id) {
@@ -73,9 +76,9 @@ class CategoryDAO implements ModelInterface {
 
     }
     /**
-    * Selecionar una categoria per id
+    * Selecionar un producte per id
     * @param $id identificador de la categoria a buscar
-    * @return Category objecte or NULL
+    * @return Product objecte or NULL
     */
     public function searchById($id) {
 

@@ -1,7 +1,7 @@
 <?php
 //cridem a tots els controladors que necessitem cridar des del processRequest()
 require_once "controller/CategoryController.class.php";
-//require_once "controller/ProductController.class.php";
+require_once "controller/ProductController.class.php";
 
 
 class MainController {
@@ -27,8 +27,10 @@ class MainController {
                 $controlCategory = new CategoryController();
                 $controlCategory->processRequest();
                 break;
-            //case "products":
-                // -- to do --
+            case "products":
+                $controlProduct = new ProductController();
+                $controlProduct->processRequest();
+                break;
             default:
                 include("view/menu/MainMenu.html");
                 

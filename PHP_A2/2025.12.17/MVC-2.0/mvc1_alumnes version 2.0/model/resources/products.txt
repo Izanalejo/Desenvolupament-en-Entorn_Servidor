@@ -9,3 +9,4 @@
 18;Marca8;nom8; descripcio8; 1008€; 3;
 19;Marca9;nom9; descripcio9; 1009€; 2;
 20;Marca10;nom10; descripcio10; 1020€; 2;
+

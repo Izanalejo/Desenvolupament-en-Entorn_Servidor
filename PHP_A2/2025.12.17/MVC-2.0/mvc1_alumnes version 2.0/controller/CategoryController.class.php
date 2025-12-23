@@ -105,9 +105,9 @@ class CategoryController implements ControllerInterface {
         if(empty($_SESSION['error'])){
             $result = $this->model->add($categoryValid);
             if($result == true){
-                $_SESSION['info'] = CategoryMessage::INF_FORM['insert'];
+                $_SESSION['info'][] = CategoryMessage::INF_FORM['insert'];
             }else{
-                $_SESSION['error'] = CategoryMessage::ERR_DAO['insert'];
+                $_SESSION['error'][] = CategoryMessage::ERR_DAO['insert'];
             }
         }
         $this->view->display("view/form/CategoryFormAdd.php", $categoryValid);
@@ -123,5 +123,4 @@ class CategoryController implements ControllerInterface {
     public function searchById(){
         //to do
     }
-  
 }
