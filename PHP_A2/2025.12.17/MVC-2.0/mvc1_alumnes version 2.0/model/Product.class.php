@@ -10,7 +10,7 @@ class Product {
     private $productType;
     private $productList=array(); // si el necessitessim en una posterior ampliació!
 
-    public function __construct($id=NULL,$brand=NULL, $name=NULL,  $description=NULL, $price=NULL, $productType ) {
+    public function __construct($id,$brand, $name,  $description, $price, $productType ) {
         $this->id=$id;
         $this->brand=$brand;
         $this->name=$name;

@@ -61,6 +61,12 @@ class ProductController implements ControllerInterface {
             case "add":
                 $this->add();
                 break;
+            case "searchById":
+                $this->searchById();
+                break;
+            case "buscar":
+                $this->search();
+                break;
             default:
                 $this->view->display();
     }
@@ -120,8 +126,15 @@ class ProductController implements ControllerInterface {
         //to do
     }
     public function searchById(){
-        //to do
+        $this->view->display("view/form/ProductSearchById.php", );
     } 
+
+    public function search(){
+        $id = $_POST['id'];
+        $search = $this->model->searchById($id);
+
+        $this->view->display("view/form/ProductsFormAdd.php", $id);
+    }
 }
 
 

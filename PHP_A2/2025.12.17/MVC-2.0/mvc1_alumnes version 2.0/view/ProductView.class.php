@@ -20,10 +20,9 @@ public function display($template=NULL, $content=NULL){
       include($template);//incluimos lo que queremos visualizar: tabla o formulario
     
     //ZONA 3, Zona de mensajeria
-    //Imprimir los mensajes memorizados en las varibañes de sesión
+    //Imprimir los mensajes memorizados en las variables de sesión
     //$_SESSION['error' y $]
 
- 
     include("view/form/MessageForm.php");
     }
     

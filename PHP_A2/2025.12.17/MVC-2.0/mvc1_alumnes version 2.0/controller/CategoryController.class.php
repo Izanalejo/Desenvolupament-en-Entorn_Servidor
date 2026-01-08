@@ -61,6 +61,12 @@ class CategoryController implements ControllerInterface {
             case "add":
                 $this->add();
                 break;
+            case "searchById":
+                $this->searchById();
+                break;
+            case "buscar":
+                $this->search();
+                break;
             default:
                 $this->view->display();
         }
@@ -121,6 +127,14 @@ class CategoryController implements ControllerInterface {
         //to do
     }
     public function searchById(){
-        //to do
+        $this->view->display("view/form/CategorySearchById.php");
+
+    }
+    public function search(){
+        $id = $_POST['id'];
+
+        $category = $this->model->searchById($id);
+
+        $this->view->display("view/form/CategoryFormAdd.php", $category);
     }
 }

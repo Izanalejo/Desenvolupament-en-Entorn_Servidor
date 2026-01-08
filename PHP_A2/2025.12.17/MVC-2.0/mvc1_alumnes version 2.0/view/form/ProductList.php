@@ -21,7 +21,7 @@ EOT;
                             <td>{$product->getBrand()}</td>
                             <td>{$product->getName()}</td>
                             <td>{$product->getDescription()}</td>
-                            <td>{$product->getPrice()}</td>
+                            <td>{$product->getPrice()}€</td>
                             <td>{$product->getProductType()}</td>
                         </tr>
 EOT;
