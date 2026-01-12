@@ -9,6 +9,7 @@ class CategoryFormValidation {
     
     const NUMERIC = "/[^0-9]/";
     const ALPHABETIC = "/[^a-z A-Z]/";
+    const ALPHANUMERIC = "/[^a-z A-Z 0-9]/";
     
     public static function checkData($fields) {
         $id=NULL;
@@ -29,7 +30,7 @@ class CategoryFormValidation {
                     break;
                 case 'name':
                     $name=trim(filter_input(INPUT_POST, 'name'));
-                    $nameValid=!preg_match(self::ALPHABETIC, $name);
+                    $nameValid=!preg_match(self::ALPHANUMERIC, $name);
                     if (empty($name)) {
                         array_push($_SESSION['error'], CategoryMessage::ERR_FORM['empty_name']);
                     }

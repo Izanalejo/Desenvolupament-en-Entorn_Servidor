@@ -135,6 +135,6 @@ class CategoryController implements ControllerInterface {
 
         $category = $this->model->searchById($id);
 
-        $this->view->display("view/form/CategoryFormAdd.php", $category);
+        $this->view->display("view/form/CategorySearch.php", $category);
     }
 }

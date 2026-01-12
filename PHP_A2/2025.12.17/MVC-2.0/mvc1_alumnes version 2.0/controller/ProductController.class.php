@@ -133,7 +133,7 @@ class ProductController implements ControllerInterface {
         $id = $_POST['id'];
         $search = $this->model->searchById($id);
 
-        $this->view->display("view/form/ProductsFormAdd.php", $id);
+        $this->view->display("view/form/ProductSearch.php", $search);
     }
 }
 
