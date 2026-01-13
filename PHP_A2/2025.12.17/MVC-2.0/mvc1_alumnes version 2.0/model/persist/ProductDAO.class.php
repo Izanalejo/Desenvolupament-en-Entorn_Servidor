@@ -82,7 +82,13 @@ class ProductDAO implements ModelInterface {
     */
     public function searchById($id) {
 
-        //to do
+        $listAll=$this->listAll(); 
+        foreach($listAll as $category){
+            if($category->getId()==$id){
+                return $category;
+            }
+        }
+        return null;
 
     }
 
