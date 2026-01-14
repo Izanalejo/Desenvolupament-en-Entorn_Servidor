@@ -8,7 +8,8 @@ require_once "model/Category.class.php";
 require_once "util/CategoryMessage.class.php";
 require_once "util/CategoryFormValidation.class.php";
 
-class CategoryController implements ControllerInterface {
+class CategoryController implements ControllerInterface
+{
 
     //atributs que segur que tindran tots els controladors
     private $view;
@@ -16,42 +17,44 @@ class CategoryController implements ControllerInterface {
 
     //constructor del controlador. Instancia objectes de les classes de la vista i el model necessàries per poder 
     //comunicar aquest controlador amb la resta
- /**
+    /**
      * Constructor del controlador. Instancia objectes de les classes de la vista i el model 
      * que són necessaris per poder comunicar aquest controlador amb la resta de l'aplicació
      * @param none
      * @return none
-    **/
-    public function __construct() {
+     **/
+    public function __construct()
+    {
 
         // càrrega de la vista
-        $this->view=new CategoryView();
+        $this->view = new CategoryView();
 
         // càrrega del model de dades
-        $this->model=new CategoryDAO();
+        $this->model = new CategoryDAO();
     }
 
-   
-   /**
+
+    /**
      * Aquest mètode el tenen tots els nostres controladors
      * Serveix per saber què fer per cada opció demanada per l'usuari: llistar, afegir, eliminar,...
      * @param none
      * @return none
-    **/
-    public function processRequest() {
+     **/
+    public function processRequest()
+    {
 
         $_SESSION['info'] = [];
         $_SESSION['error'] = [];
-        
-        $request=NULL;
 
-        if(isset($_POST["action"])){ //La petición viene por el FORMULARIO
+        $request = NULL;
+
+        if (isset($_POST["action"])) { //La petición viene por el FORMULARIO
             $request = ($_POST["action"]);
-        }else if(isset($_GET["option"])){ //La petición viene por la URL, por GET
-            $request=$_GET["option"];
+        } else if (isset($_GET["option"])) { //La petición viene por la URL, por GET
+            $request = $_GET["option"];
         }
 
-        switch ($request){
+        switch ($request) {
             case "list_all":
                 $this->listAll();
                 break;
@@ -67,6 +70,9 @@ class CategoryController implements ControllerInterface {
             case "buscar":
                 $this->search();
                 break;
+            case "delete":
+                $this->delete();
+                break;
             default:
                 $this->view->display();
         }
@@ -76,43 +82,44 @@ class CategoryController implements ControllerInterface {
      * Aquest mètode ens mostra totes les categories
      * @param none
      * @return none
-    **/
-    
-    public function listAll() {
-       $categories=array();
-       //llamamos al modelo, es obligatorio
-       $categories=$this->model->listAll(); //$categories es un array de objetos categoria
+     **/
 
-       if (!empty($categories)){
+    public function listAll()
+    {
+        $categories = array();
+        //llamamos al modelo, es obligatorio
+        $categories = $this->model->listAll(); //$categories es un array de objetos categoria
+
+        if (!empty($categories)) {
             $this->view->display("view/form/CategoryList.php", content: $categories);
-       }else{
+        } else {
             $this->view->display("view/form/CategoryList.php");
-       }
-
-
+        }
     }
     /**
      * Aquest mètode ens mostra totes les categories
      * @param none
      * @return none
-    **/
-    public function formAdd() {
+     **/
+    public function formAdd()
+    {
         $this->view->display("view/form/CategoryFormAdd.php");
-     }
+    }
 
     /**
      * Aquest mètode ens afegeix la categoria al fitxer
      * @param none
      * @return none
-    **/
-    public function add() {
+     **/
+    public function add()
+    {
         $categoryValid = CategoryFormValidation::checkData(CategoryFormValidation::ADD_FIELDS);
 
-        if(empty($_SESSION['error'])){
+        if (empty($_SESSION['error'])) {
             $result = $this->model->add($categoryValid);
-            if($result == true){
+            if ($result == true) {
                 $_SESSION['info'][] = CategoryMessage::INF_FORM['insert'];
-            }else{
+            } else {
                 $_SESSION['error'][] = CategoryMessage::ERR_DAO['insert'];
             }
         }
@@ -120,17 +127,27 @@ class CategoryController implements ControllerInterface {
     }
 
     //altres mètodes necessaris: to do
-    public function modify(){
+    public function modify()
+    {
         //to do
     }
-    public function delete(){
-        //to do
+    public function delete()
+    {
+        $this->view->display("view/form/CategoryDelete.php");
     }
-    public function searchById(){
-        $this->view->display("view/form/CategorySearchById.php");
+    public function deleteById(){
+        $id = $_POST['id'];
 
+        $category = $this->model->delete($id);
+
+        $this->view->display("view/form/DeleteCategory.php", $category);
     }
-    public function search(){
+    public function searchById()
+    {
+        $this->view->display("view/form/CategorySearchById.php");
+    }
+    public function search()
+    {
         $id = $_POST['id'];
 
         $category = $this->model->searchById($id);

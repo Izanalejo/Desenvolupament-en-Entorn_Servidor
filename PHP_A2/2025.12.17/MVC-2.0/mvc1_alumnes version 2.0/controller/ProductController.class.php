@@ -67,6 +67,12 @@ class ProductController implements ControllerInterface {
             case "buscar":
                 $this->search();
                 break;
+            case "form_delete": //1. Mostrar formulario de DELETE
+                $this->formDelete();
+                break;
+            case "delete": //2. Accion de borrar en el fichero
+                $this->delete();
+                break;
             default:
                 $this->view->display();
     }
@@ -122,8 +128,14 @@ class ProductController implements ControllerInterface {
     public function modify(){
         //to do
     }
+    public function formDelete(){
+        $this->view->display("view/form/ProductFormDelete.php");
+    }
     public function delete(){
-        //to do
+    if($this->model->searchById($_POST['id'])){
+        $this->model->delete($_POST['id']);
+        header('location: ' .$_SERVER['PHP_SELF'] . "?menu=products&option=list_all");
+    }
     }
     public function searchById(){
         $this->view->display("view/form/ProductSearchById.php", );
@@ -133,7 +145,14 @@ class ProductController implements ControllerInterface {
         $id = $_POST['id'];
         $search = $this->model->searchById($id);
 
+        if($search == true){
+                $_SESSION['info'] = ProductMessage::INF_FORM['found'];
+            }else{
+                $_SESSION['error'] = ProductMessage::ERR_FORM['not_exists_id'];
+            }
         $this->view->display("view/form/ProductSearch.php", $search);
+
+        return $search;
     }
 }
 

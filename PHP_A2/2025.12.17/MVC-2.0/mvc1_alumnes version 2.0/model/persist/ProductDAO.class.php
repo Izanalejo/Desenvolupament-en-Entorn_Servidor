@@ -68,12 +68,23 @@ class ProductDAO implements ModelInterface {
     /**
     * Esborra un producte donat l' id
     * @param $id identificador del producte a buscar
-    * @return TRUE O FALSE
+    * @return void
     */
     public function delete($id) {
-
-        //to do
-
+    $response=array();
+        $linesToFile=array();
+        $linesToFile=$this->dbConnect->realAllLines();
+        if(count($linesToFile)>0){
+            foreach($linesToFile as $line){
+                if(!empty($line)){
+                    $pieces=explode(";", $line);
+                    if($pieces[0] != $id){
+                        $response[]=$line;
+                    }
+                }
+            }
+            $this->dbConnect->writeToFile($response);
+        }
     }
     /**
     * Selecionar un producte per id
@@ -83,9 +94,9 @@ class ProductDAO implements ModelInterface {
     public function searchById($id) {
 
         $listAll=$this->listAll(); 
-        foreach($listAll as $category){
-            if($category->getId()==$id){
-                return $category;
+        foreach($listAll as $product){
+            if($product->getId()==$id){
+                return $product;
             }
         }
         return null;

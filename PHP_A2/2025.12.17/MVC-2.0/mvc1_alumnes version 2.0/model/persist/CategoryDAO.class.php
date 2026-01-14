@@ -68,9 +68,7 @@ class CategoryDAO implements ModelInterface {
     * @return TRUE O FALSE
     */
     public function delete($id) {
-
         //to do
-
     }
     /**
     * Selecionar una categoria per id
@@ -78,7 +76,6 @@ class CategoryDAO implements ModelInterface {
     * @return Category objecte or NULL
     */
     public function searchById($id) {
-
         $listAll=$this->listAll(); 
         foreach($listAll as $category){
             if($category->getId()==$id){
