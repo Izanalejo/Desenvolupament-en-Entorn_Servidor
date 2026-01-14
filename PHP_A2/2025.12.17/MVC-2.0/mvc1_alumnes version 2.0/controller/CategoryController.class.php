@@ -70,6 +70,9 @@ class CategoryController implements ControllerInterface
             case "buscar":
                 $this->search();
                 break;
+            case "form_delete":
+                $this->formDelete();
+                break;
             case "delete":
                 $this->delete();
                 break;
@@ -131,16 +134,15 @@ class CategoryController implements ControllerInterface
     {
         //to do
     }
+    public function formDelete(){
+        $this->view->display("view/form/CategoryFormDelete.php");
+    }
     public function delete()
     {
-        $this->view->display("view/form/CategoryDelete.php");
-    }
-    public function deleteById(){
-        $id = $_POST['id'];
-
-        $category = $this->model->delete($id);
-
-        $this->view->display("view/form/DeleteCategory.php", $category);
+        if ($this->model->searchById($_POST['id'])){
+            $this->model->delete($_POST['id']);
+        }
+        header('location: ' . $_SERVER['PHP_SELF'] . "?menu=category&option=list_all"); 
     }
     public function searchById()
     {

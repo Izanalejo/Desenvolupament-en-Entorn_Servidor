@@ -65,10 +65,23 @@ class CategoryDAO implements ModelInterface {
     /**
     * Esborra una categoria donat l' id
     * @param $id identificador de la categoria a buscar
-    * @return TRUE O FALSE
+    * @return void
     */
     public function delete($id) {
-        //to do
+        $response=array();
+        $linesToFile=array();
+        $linesToFile=$this->dbConnect->realAllLines();
+        if(count($linesToFile)>0){
+            foreach($linesToFile as $line){
+                if(!empty($line)){
+                    $pieces=explode(";", $line);
+                    if($pieces[0] != $id){
+                        $response[]=$line;
+                    }
+                }
+            }
+            $this->dbConnect->writeToFile($response);
+        }
     }
     /**
     * Selecionar una categoria per id

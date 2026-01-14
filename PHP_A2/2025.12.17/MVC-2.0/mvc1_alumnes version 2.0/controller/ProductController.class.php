@@ -1,8 +1,6 @@
 <?php
 //crido de manera general tot el que necessitaré cridar
 
-//to do
-
 require_once "controller/ControllerInterface.php";
 require_once "view/ProductView.class.php";
 require_once "model/persist/ProductDAO.class.php";
@@ -10,7 +8,8 @@ require_once "model/Product.class.php";
 require_once "util/ProductMessage.class.php";
 require_once "util/ProductFormValidation.class.php";
 
-class ProductController implements ControllerInterface {
+class ProductController implements ControllerInterface
+{
 
     //atributs que segur que tindran tots els controladors
     private $view;
@@ -23,14 +22,15 @@ class ProductController implements ControllerInterface {
      * que són necessaris per poder comunicar aquest controlador amb la resta de l'aplicació
      * @param none
      * @return none
-    **/
-    public function __construct() {
+     **/
+    public function __construct()
+    {
 
         // càrrega de la vista
-        $this->view=new ProductView();
+        $this->view = new ProductView();
 
         // càrrega del model de dades
-        $this->model=new ProductDAO();
+        $this->model = new ProductDAO();
     }
 
     /**
@@ -38,20 +38,21 @@ class ProductController implements ControllerInterface {
      * Serveix per saber què fer per cada opció demanada per l'usuari: llistar, afegir, eliminar,...
      * @param none
      * @return none
-    **/
-    public function processRequest() {
+     **/
+    public function processRequest()
+    {
         $_SESSION['info'] = [];
         $_SESSION['error'] = [];
-        
-        $request=NULL;
 
-        if(isset($_POST["action"])){ //La petición viene por el FORMULARIO
+        $request = NULL;
+
+        if (isset($_POST["action"])) { //La petición viene por el FORMULARIO
             $request = ($_POST["action"]);
-        }else if(isset($_GET["option"])){ //La petición viene por la URL, por GET
-            $request=$_GET["option"];
+        } else if (isset($_GET["option"])) { //La petición viene por la URL, por GET
+            $request = $_GET["option"];
         }
 
-        switch ($request){
+        switch ($request) {
             case "list_all":
                 $this->listAll();
                 break;
@@ -75,33 +76,35 @@ class ProductController implements ControllerInterface {
                 break;
             default:
                 $this->view->display();
+        }
     }
-}
 
     /**
      * Aquest mètode ens mostra tots els productes
      * @param none
      * @return none
-    **/
-    
-    public function listAll() {
-        $products=array();
-       //llamamos al modelo, es obligatorio
-       $products=$this->model->listAll(); //$products es un array de objetos producte
+     **/
 
-       if (!empty($products)){
+    public function listAll()
+    {
+        $products = array();
+        //llamamos al modelo, es obligatorio
+        $products = $this->model->listAll(); //$products es un array de objetos producte
+
+        if (!empty($products)) {
             $this->view->display("view/form/ProductList.php", content: $products);
-       }else{
+        } else {
             $this->view->display("view/form/ProductList.php");
-       }
+        }
     }
     /**
      * Aquest mètode ens mostra el formulari necessari per afegir un nou 
      * producte
      * @param none
      * @return none
-    **/
-    public function formAdd() {
+     **/
+    public function formAdd()
+    {
         $this->view->display("view/form/ProductFormAdd.php");
     }
 
@@ -109,15 +112,16 @@ class ProductController implements ControllerInterface {
      * Aquest mètode ens afegeix el producte al fitxer
      * @param none
      * @return none
-    **/
-    public function add() {
+     **/
+    public function add()
+    {
         $productValid = ProductFormValidation::checkData(ProductFormValidation::ADD_FIELDS);
 
-        if(empty($_SESSION['error'])){
+        if (empty($_SESSION['error'])) {
             $result = $this->model->add($productValid);
-            if($result == true){
+            if ($result == true) {
                 $_SESSION['info'] = ProductMessage::INF_FORM['insert'];
-            }else{
+            } else {
                 $_SESSION['error'] = ProductMessage::ERR_DAO['insert'];
             }
         }
@@ -125,36 +129,38 @@ class ProductController implements ControllerInterface {
     }
 
     //altres mètodes necessaris: to do
-    public function modify(){
+    public function modify()
+    {
         //to do
     }
-    public function formDelete(){
+    public function formDelete()
+    {
         $this->view->display("view/form/ProductFormDelete.php");
     }
-    public function delete(){
-    if($this->model->searchById($_POST['id'])){
-        $this->model->delete($_POST['id']);
-        header('location: ' .$_SERVER['PHP_SELF'] . "?menu=products&option=list_all");
+    public function delete()
+    {
+        if ($this->model->searchById($_POST['id'])) {
+            $this->model->delete($_POST['id']);
+        }            
+        header('location: ' . $_SERVER['PHP_SELF'] . "?menu=products&option=list_all"); 
     }
+    public function searchById()
+    {
+        $this->view->display("view/form/ProductSearchById.php",);
     }
-    public function searchById(){
-        $this->view->display("view/form/ProductSearchById.php", );
-    } 
 
-    public function search(){
+    public function search()
+    {
         $id = $_POST['id'];
         $search = $this->model->searchById($id);
 
-        if($search == true){
-                $_SESSION['info'] = ProductMessage::INF_FORM['found'];
-            }else{
-                $_SESSION['error'] = ProductMessage::ERR_FORM['not_exists_id'];
-            }
+        if ($search == true) {
+            $_SESSION['info'] = ProductMessage::INF_FORM['found'];
+        } else {
+            $_SESSION['error'] = ProductMessage::ERR_FORM['not_exists_id'];
+        }
         $this->view->display("view/form/ProductSearch.php", $search);
 
         return $search;
     }
 }
-
-
-

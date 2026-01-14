@@ -71,7 +71,7 @@ class ProductDAO implements ModelInterface {
     * @return void
     */
     public function delete($id) {
-    $response=array();
+        $response=array();
         $linesToFile=array();
         $linesToFile=$this->dbConnect->realAllLines();
         if(count($linesToFile)>0){
@@ -92,7 +92,6 @@ class ProductDAO implements ModelInterface {
     * @return Product objecte or NULL
     */
     public function searchById($id) {
-
         $listAll=$this->listAll(); 
         foreach($listAll as $product){
             if($product->getId()==$id){
@@ -100,10 +99,6 @@ class ProductDAO implements ModelInterface {
             }
         }
         return null;
-
     }
-
-
-
 }
     ?>
