@@ -3,4 +3,3 @@
 4;categoria4;
 5;categoria5;
 6;Categoria6;
-7;Categoria7;

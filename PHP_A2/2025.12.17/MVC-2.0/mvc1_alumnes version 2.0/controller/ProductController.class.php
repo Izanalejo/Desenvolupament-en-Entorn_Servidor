@@ -74,6 +74,15 @@ class ProductController implements ControllerInterface
             case "delete": //2. Accion de borrar en el fichero
                 $this->delete();
                 break;
+            case "form_update":
+                $this->formModify();
+                break;
+            case "update": 
+                $this->modify();
+                break;
+            case "updateById": 
+                $this->modifyById();
+                break;
             default:
                 $this->view->display();
         }
@@ -129,9 +138,22 @@ class ProductController implements ControllerInterface
     }
 
     //altres mètodes necessaris: to do
-    public function modify()
+    public function FormModify()
     {
-        //to do
+        $this->view->display("view/form/ProductFormModify.php");
+    }
+    public function modifyById()
+    {
+        $id = $_POST['id'];
+        $search = $this->model->searchById($id);
+
+        $this->view->display("view/form/ProductModify.php", $search);
+    }
+    
+    public function modify(){
+        $this->model->modify(new Product($_POST['id'], $_POST['name']));
+
+        header('location: ' . $_SERVER['PHP_SELF'] . "?menu=products&option=list_all");
     }
     public function formDelete()
     {

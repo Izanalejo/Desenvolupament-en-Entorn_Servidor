@@ -1,4 +1,4 @@
-<?php
+git<?php
 //crido tot el que necessitaré fer servir
 
 require_once "controller/ControllerInterface.php";

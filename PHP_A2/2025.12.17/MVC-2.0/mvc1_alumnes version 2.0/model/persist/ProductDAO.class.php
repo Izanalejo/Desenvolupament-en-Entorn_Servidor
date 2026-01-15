@@ -57,11 +57,34 @@ class ProductDAO implements ModelInterface {
     /**
     * Modificar un producte
     * @param Product objecte donat
-    * @return TRUE o FALSE
+    * @return void
     */
-    public function modify($product){
-
-		// to do
+    public function modify($productUpdate){
+		$response=array();
+        $newline =  $response[] = implode(';', [
+                            $productUpdate -> getId(),
+                            $productUpdate -> getBrand(),
+                            $productUpdate -> getName(),
+                            $productUpdate -> getDescription(),
+                            $productUpdate -> getPrice(),
+                            $productUpdate -> getProductType()
+                            ]);
+        $linesToFile=array();
+        $linesToFile=$this->dbConnect->realAllLines();
+        if(count($linesToFile)>0){
+            foreach($linesToFile as $line){
+                if(!empty($line)){
+                    $pieces=explode(";", $line);
+                    if($pieces[0] != $productUpdate->getId()){
+                        $response[] = $line;
+                    }else{
+                        $response[] = $newline;
+                    }
+                }
+            }
+            print_r($response);
+            $this->dbConnect->writeToFile($response);
+        }
     }
 
 
