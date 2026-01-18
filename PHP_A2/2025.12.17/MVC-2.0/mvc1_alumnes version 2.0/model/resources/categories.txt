@@ -1,5 +1,6 @@
 1;categoria1;
+2;Categoria2;
 3;categoria3;
 4;categoria4;
 5;categoria5;
-6;Categoria6;
+6;categoria6

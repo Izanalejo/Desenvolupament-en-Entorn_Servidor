@@ -1,4 +1,4 @@
-git<?php
+<?php
 //crido tot el que necessitaré fer servir
 
 require_once "controller/ControllerInterface.php";
@@ -76,6 +76,15 @@ class CategoryController implements ControllerInterface
             case "delete":
                 $this->delete();
                 break;
+            case "form_update":
+                $this->formModify();
+                break;
+            case "updateById":
+                $this->updateById();
+                break;
+            case "update":
+                $this->modify();
+                break;
             default:
                 $this->view->display();
         }
@@ -129,10 +138,28 @@ class CategoryController implements ControllerInterface
         $this->view->display("view/form/CategoryFormAdd.php", $categoryValid);
     }
 
-    //altres mètodes necessaris: to do
+    public function formModify(){
+        $this->view->display("view/form/CategoryFormModify.php");
+    }
+    
+    public function updateById(){
+        $id = $_POST['id'];
+        $category = $this->model->searchById($id);
+        
+
+        if($category !== NULL)
+        {
+            $this->view->display("view/form/CategoryModify.php", $category);
+        }
+        else{
+            $_SESSION['error'] = CategoryMessage::ERR_FORM['invalid_id'];
+            $this->view->display("view/form/CategoryFormModify.php");     
+        }
+    }
     public function modify()
     {
-        //to do
+        $this->model->modify(new Category($_POST["id"], $_POST["name"]));
+        header("location: ".$_SERVER["PHP_SELF"]."?menu=category&option=list_all");
     }
     public function formDelete(){
         $this->view->display("view/form/CategoryFormDelete.php");

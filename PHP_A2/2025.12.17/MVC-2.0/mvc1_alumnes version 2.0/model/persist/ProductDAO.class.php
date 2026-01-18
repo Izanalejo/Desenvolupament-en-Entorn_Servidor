@@ -59,33 +59,36 @@ class ProductDAO implements ModelInterface {
     * @param Product objecte donat
     * @return void
     */
-    public function modify($productUpdate){
-		$response=array();
-        $newline =  $response[] = implode(';', [
-                            $productUpdate -> getId(),
-                            $productUpdate -> getBrand(),
-                            $productUpdate -> getName(),
-                            $productUpdate -> getDescription(),
-                            $productUpdate -> getPrice(),
-                            $productUpdate -> getProductType()
-                            ]);
-        $linesToFile=array();
-        $linesToFile=$this->dbConnect->realAllLines();
-        if(count($linesToFile)>0){
-            foreach($linesToFile as $line){
-                if(!empty($line)){
-                    $pieces=explode(";", $line);
-                    if($pieces[0] != $productUpdate->getId()){
-                        $response[] = $line;
-                    }else{
-                        $response[] = $newline;
-                    }
+   public function modify($productUpdate){
+    $response = array();
+    
+    // Crear la nueva línea correctamente
+    $newline = implode(';', [
+        $productUpdate->getId(),
+        $productUpdate->getBrand(),
+        $productUpdate->getName(),
+        $productUpdate->getDescription(),
+        $productUpdate->getPrice(),
+        $productUpdate->getProductType()
+    ]);
+    
+    $linesToFile = array();
+    $linesToFile = $this->dbConnect->realAllLines();
+    
+    if(count($linesToFile) > 0){
+        foreach($linesToFile as $line){
+            if(!empty($line)){
+                $pieces = explode(";", $line);
+                if($pieces[0] != $productUpdate->getId()){
+                    $response[] = $line;
+                } else {
+                    $response[] = $newline;
                 }
             }
-            print_r($response);
-            $this->dbConnect->writeToFile($response);
         }
+        $this->dbConnect->writeToFile($response);
     }
+}
 
 
     /**

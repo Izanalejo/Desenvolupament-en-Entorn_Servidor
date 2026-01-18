@@ -147,14 +147,33 @@ class ProductController implements ControllerInterface
         $id = $_POST['id'];
         $search = $this->model->searchById($id);
 
-        $this->view->display("view/form/ProductModify.php", $search);
+        if($search !== NULL)
+        {
+            $this->view->display("view/form/ProductModify.php", $search);
+        }
+        else{
+            $_SESSION['error'] = ProductMessage::ERR_FORM['invalid_id'];
+            $this->view->display("view/form/ProductFormModify.php");     
+        }
     }
     
     public function modify(){
-        $this->model->modify(new Product($_POST['id'], $_POST['name']));
-
-        header('location: ' . $_SERVER['PHP_SELF'] . "?menu=products&option=list_all");
-    }
+    // Crear el objeto Product con todos los campos del formulario
+    $product = new Product(
+        $_POST['id'], 
+        $_POST['brand'],
+        $_POST['name'],
+        $_POST['description'],
+        $_POST['price'],
+        $_POST['productType']
+    );
+    
+    // Llamar al modelo para modificar
+    $this->model->modify($product);
+    
+    // Redirigir a la lista
+    header('location: ' . $_SERVER['PHP_SELF'] . "?menu=products&option=list_all");
+}
     public function formDelete()
     {
         $this->view->display("view/form/ProductFormDelete.php");

@@ -5,7 +5,7 @@
  * Altres missatges seran per a informar d'un error que necessita l'usuari per a rectificar
  */
 class CategoryMessage {
-
+    
     //missatges informatius generals
     const INF_FORM =
         array(

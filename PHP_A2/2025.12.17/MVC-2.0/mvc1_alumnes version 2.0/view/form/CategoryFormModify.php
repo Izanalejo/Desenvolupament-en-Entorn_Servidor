@@ -1,6 +1,6 @@
 <form method="post">
     <fieldset>
-        <legend>Update Product</legend>
+        <legend>Update Category</legend>
         <label>Id *:</label>
         <input type="text" placeholder="Id" 
         name="id" value="<?php if (isset($content)) { echo $content->getId(); } ?>" />
