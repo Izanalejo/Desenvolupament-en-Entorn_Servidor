@@ -1,25 +1,25 @@
 <?php
 require_once 'models/Producto.php';
+require_once 'ProductoView.php';
 
 class ProductoController {
     private Producto $modelo;
-    private Producto $view;
+    private ProductoView $view;
 
     public function __construct(PDO $db) {
         $this->modelo = new Producto($db);
-        $this->view = new Producto($db);
+        $this->view = new ProductoView();
     }
 
     public function mostrarLista() {
         $productos = $this->modelo->listar();
-        include 'views/listar.php';
+        $this->view->display("views/listar.php", $productos);
     }
 
     public function mostrarFormulario($id = null) {
         $p = $id ? $this->modelo->obtenerPorId($id) : null;
-        include 'views/formulario.php';
+        $this->view->display(template: 'views/formulario.php');
     }
-
     public function procesar() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id = !empty($_POST['id']) ? (int)$_POST['id'] : null;

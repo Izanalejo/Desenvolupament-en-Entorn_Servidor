@@ -1,4 +1,4 @@
-<?php $titulo = isset($p) ? "Editar Producto" : "Nuevo Producto"; ?>
+<?php $titulo = isset($id) ? "Editar Producto" : "Nuevo Producto"; ?>
 <h2><?= $titulo ?></h2>
 <form action="index.php?action=guardar" method="POST">
     <input type="hidden" name="id" value="<?= $p['id'] ?? '' ?>">
